@@ -7,6 +7,7 @@ import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
@@ -42,6 +43,25 @@ public class Home {
         return "movies";
     }
 
+    @GetMapping("/movies/{id}")
+    public String movieDetails(@PathVariable("id") String movieId, Model model){
+        List<Content> movies = getBestMovies();
+        Content movie = null;
+        for (int i = 0; i < movies.size() ; i++) {
+            if (movies.get(i).getId() == Long.parseLong(movieId)){
+                movie = movies.get(i);
+            }
+        }
+
+        if(movie != null){
+            model.addAttribute("movie", movie);
+        } else {
+            model.addAttribute("movie", "Non sono stati trovati film");
+        }
+
+        return "movie-details";
+    }
+
     //SONGS
     @GetMapping("/songs")
     public String songs(Model model){
@@ -56,6 +76,25 @@ public class Home {
         model.addAttribute("bestSongs", bestSongs);
 
         return "songs";
+    }
+
+    @GetMapping("/songs/{id}")
+    public String songDetails(@PathVariable("id") String songId, Model model){
+        List<Content> songs = getBestSongs();
+        Content song = null;
+        for (int i = 0; i < songs.size() ; i++) {
+            if (songs.get(i).getId() == Long.parseLong(songId)){
+                song = songs.get(i);
+            }
+        }
+
+        if(song != null){
+            model.addAttribute("song", song);
+        } else {
+            model.addAttribute("song", "Non sono state trovate canzoni");
+        }
+
+        return "song-details";
     }
 
     //METHODS

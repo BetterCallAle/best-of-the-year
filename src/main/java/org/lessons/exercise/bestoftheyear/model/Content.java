@@ -17,6 +17,9 @@ public class Content {
     }
 
     //GETTERS
+    public long getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }
