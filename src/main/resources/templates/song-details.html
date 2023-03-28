@@ -8,7 +8,23 @@
     <title>Home</title>
 </head>
 <body>
-<h1 th:text="${song}"></h1>
+
+    <!--IF THERE'S NO SONG-->
+    <div th:if="${song == null}">
+        <h1>Non sono state trovate canzoni</h1>
+    </div>
+    <!--SHOW SONG-->
+    <div th:unless="${song == null}">
+        <h1 th:text="|${song.name} - ${song.band}|"></h1>
+        <div th:object="${song}">
+            <ul>
+                <li>Name: [[${song.name}]]</li>
+                <li>Year: [[${song.year.getYear()}]]</li>
+                <li>Genre: [[${song.genre}]]</li>
+                <li>Band: [[${song.band}]]</li>
+            </ul>
+        </div>
+    </div>
 
 </body>
 </html>

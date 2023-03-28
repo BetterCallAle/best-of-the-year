@@ -30,15 +30,7 @@ public class Home {
     //MOVIES
     @GetMapping("/movies")
     public String movies(Model model){
-        String bestMovies = "";
-        List<Content> movies = getBestMovies();
-
-        for (Content movie : movies){
-            bestMovies += movie.getName() + ", ";
-        }
-
-        bestMovies = bestMovies.substring(0, bestMovies.length()-2);
-        model.addAttribute("bestMovies", bestMovies);
+        model.addAttribute("bestMovies", getBestMovies());
 
         return "movies";
     }
@@ -53,11 +45,7 @@ public class Home {
             }
         }
 
-        if(movie != null){
-            model.addAttribute("movie", movie);
-        } else {
-            model.addAttribute("movie", "Non sono stati trovati film");
-        }
+        model.addAttribute("movie", movie);
 
         return "movie-details";
     }
@@ -65,15 +53,7 @@ public class Home {
     //SONGS
     @GetMapping("/songs")
     public String songs(Model model){
-        String bestSongs = "";
-        List<Content> songs = getBestSongs();
-
-        for (Content song : songs){
-            bestSongs += song.getName() + ", ";
-        }
-
-        bestSongs = bestSongs.substring(0, bestSongs.length()-2);
-        model.addAttribute("bestSongs", bestSongs);
+        model.addAttribute("bestSongs", getBestSongs());
 
         return "songs";
     }
@@ -88,11 +68,7 @@ public class Home {
             }
         }
 
-        if(song != null){
-            model.addAttribute("song", song);
-        } else {
-            model.addAttribute("song", "Non sono state trovate canzoni");
-        }
+        model.addAttribute("song", song);
 
         return "song-details";
     }

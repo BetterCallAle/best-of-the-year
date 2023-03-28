@@ -8,7 +8,12 @@
     <title>Home</title>
 </head>
 <body>
-<h1 th:text="'Best movies: ' + ${bestMovies}"></h1>
+    <h1>This are the best movies:</h1>
+    <ul>
+        <li th:each="movie : ${bestMovies}">
+            <a th:href="@{|/movies/${movie.id}|}" th:text="${movie.name}"></a>
+        </li>
+    </ul>
 
 </body>
 </html>

@@ -8,7 +8,22 @@
     <title>Home</title>
 </head>
 <body>
-<h1 th:text="${movie}"></h1>
 
+    <!--IF THERE'S NO MOVIE-->
+    <div th:if="${movie == null}">
+        <h1>Non sono stati trovati film</h1>
+    </div>
+    <!--SHOW MOVIE DETAIL-->
+    <div th:unless="${movie == null}">
+        <h1 th:text="|${movie.name} - ${movie.director}|"></h1>
+        <div th:object="${movie}">
+            <ul>
+                <li>Name: [[${movie.name}]]</li>
+                <li>Year: [[${movie.year.getYear()}]]</li>
+                <li>Genre: [[${movie.genre}]]</li>
+                <li>Director: [[${movie.director}]]</li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

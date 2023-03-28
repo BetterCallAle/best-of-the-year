@@ -8,7 +8,11 @@
     <title>Home</title>
 </head>
 <body>
-<h1 th:text="'Best songs: ' + ${bestSongs}"></h1>
-
+    <h1>This are the best songs:</h1>
+    <ul>
+        <li th:each="song : ${bestSongs}">
+            <a th:href="@{|/songs/${song.id}|}" th:text="${song.name}"></a>
+        </li>
+    </ul>
 </body>
 </html>
