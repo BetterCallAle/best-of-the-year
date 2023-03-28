@@ -5,15 +5,20 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <div th:replace="~{fragments :: resources('All Movies')}"></div>
 </head>
 <body>
-    <h1>This are the best movies:</h1>
-    <ul>
-        <li th:each="movie : ${bestMovies}">
-            <a th:href="@{|/movies/${movie.id}|}" th:text="${movie.name}"></a>
-        </li>
-    </ul>
+    <!--HEADER-->
+    <header th:replace="~{fragments :: header('movies')}"></header>
+    <!--/HEADER-->
+    <div class="container text-center py-4">
+        <h1>This are the best movies:</h1>
+        <ul>
+            <li th:each="movie : ${bestMovies}" class="mt-3">
+                <a th:href="@{|/movies/${movie.id}|}" th:text="${movie.name}"></a>
+            </li>
+        </ul>
+    </div>
 
 </body>
 </html>

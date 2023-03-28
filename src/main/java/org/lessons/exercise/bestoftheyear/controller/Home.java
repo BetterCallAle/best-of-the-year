@@ -47,6 +47,7 @@ public class Home {
 
         model.addAttribute("movie", movie);
 
+
         return "movie-details";
     }
 
